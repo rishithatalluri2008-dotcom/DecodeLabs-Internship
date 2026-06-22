@@ -1,0 +1,39 @@
+
+# Expense Tracker
+# Project 2 - DecodeLabs
+
+def expense_tracker():
+    print("=" * 35)
+    print("      EXPENSE TRACKER")
+    print("=" * 35)
+
+    total_spent = 0.0
+
+    while True:
+        expense = input("Enter expense amount (or type 'done' to finish): ")
+
+        if expense.lower() == "done":
+            break
+
+        try:
+            amount = float(expense)
+
+            if amount < 0:
+                print("Expense cannot be negative.")
+                continue
+
+            total_spent += amount
+            print(f"Expense Added: ₹{amount:.2f}")
+            print(f"Current Total: ₹{total_spent:.2f}\n")
+
+        except ValueError:
+            print("Please enter a valid amount.\n")
+
+    print("\n" + "=" * 35)
+    print(f"Total Amount Spent: ₹{total_spent:.2f}")
+    print("Thank you for using Expense Tracker!")
+    print("=" * 35)
+
+
+if __name__ == "__main__":
+    expense_tracker()
