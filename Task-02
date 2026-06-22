@@ -1,0 +1,52 @@
+import random
+import string
+
+
+def generate_password(length):
+    letters = string.ascii_letters
+    digits = string.digits
+    symbols = "!@#$%^&*"
+
+    all_characters = letters + digits + symbols
+
+    # Ensure at least one letter, one digit, and one symbol
+    password = [
+        random.choice(letters),
+        random.choice(digits),
+        random.choice(symbols)
+    ]
+
+    # Fill remaining characters
+    for _ in range(length - 3):
+        password.append(random.choice(all_characters))
+
+    random.shuffle(password)
+    return "".join(password)
+
+
+def main():
+    print("=" * 40)
+    print("      RANDOM PASSWORD GENERATOR")
+    print("=" * 40)
+
+    while True:
+        try:
+            length = int(input("Enter password length (minimum 6): "))
+            if length < 6:
+                print("Password length must be at least 6.\n")
+                continue
+
+            password = generate_password(length)
+            print("\nGenerated Password:", password)
+
+            choice = input("\nGenerate another password? (y/n): ").lower()
+            if choice != 'y':
+                print("\nThank you for using the Password Generator!")
+                break
+
+        except ValueError:
+            print("Please enter a valid number.\n")
+
+
+if __name__ == "__main__":
+    main()
